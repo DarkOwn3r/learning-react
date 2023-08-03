@@ -1,4 +1,4 @@
-import { Children, useState  } from "react"
+import { useState  } from "react"
 
 export function TwitterFollowCard ({ userName = 'unknown', children = 'unknown'}) {
 
