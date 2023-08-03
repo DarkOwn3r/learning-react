@@ -43,15 +43,15 @@
     color: #f4212e;
 } 
 
-.tw-followCard-button.is-following:hover .unfollow{
+.tw-followCard-button.is-following:hover .tw-followCard-unfollow{
     display: block;
 } 
 
-.tw-followCard-button .unfollow {
+.tw-followCard-button .tw-followCard-unfollow {
     display: none;
 }
 
-.tw-followCard-button.is-following:hover .state {
+.tw-followCard-button.is-following:hover .tw-followCard-state {
     display: none;
 } 
 
