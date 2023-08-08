@@ -60,6 +60,11 @@ function App() {
     setWinner(null)
   }
 
+  // check if there are no more empty squares, if not then draw
+  const checkEndGame = (newBoard) => {
+    return newBoard.every((square) => square !== null)
+  }
+
   const updateBoard = (index) => {
     //don't update if already written
     if (board[index] || winner) return
@@ -74,6 +79,8 @@ function App() {
     const newWinner = checkWinner(newBoard)
     if (newWinner) {
       setWinner(newWinner)
+    } else if (checkEndGame(newBoard)) {
+      setWinner(false) // draw
     }
   }
 
@@ -83,14 +90,14 @@ function App() {
       <button onClick={resetGame}>Reset</button>
       <section className='game'>
         {
-          board.map((_, index) => {
+          board.map((square, index) => {
             return (
               <Square
                 key={index}
                 index={index}
                 updateBoard={updateBoard}
               >
-              {board[index]}
+              {square}
               </Square>
             )
           })
