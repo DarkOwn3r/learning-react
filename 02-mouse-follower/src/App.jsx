@@ -18,7 +18,7 @@ export function App() {
         setFact(fact)
       })
   }
-  useEffect(() => {getRandomFact}, [])
+  useEffect(() => {getRandomFact, []})
 
   // get the image from the fact
   useEffect(() => {
@@ -32,7 +32,7 @@ export function App() {
     })
   }, [fact])
 
-  const handleClick = () => {getRandomFact}
+  const handleClick = () => {getRandomFact()}
 
   return (
     <main>
