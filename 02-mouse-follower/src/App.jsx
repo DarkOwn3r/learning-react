@@ -9,15 +9,16 @@ export function App() {
   const [fact, setFact] = useState()
   const [imageUrl, setImageUrl] = useState()
 
-  // get the fact quotes
-  useEffect(() => {
+  // get the fact quotes 
+  const getRandomFact = () => {
     fetch(CAT_ENDPOINT_RANDOM_FACT)
       .then(res => res.json())
       .then(data => {
         const { fact } = data
         setFact(fact)
       })
-  }, [])
+  }
+  useEffect(() => {getRandomFact}, [])
 
   // get the image from the fact
   useEffect(() => {
@@ -31,9 +32,12 @@ export function App() {
     })
   }, [fact])
 
+  const handleClick = () => {getRandomFact}
+
   return (
     <main>
       <h1>Cat Facts App</h1>
+      <button onClick={handleClick}>Get new fact</button>
       {fact && <p>{fact}</p>}
       {imageUrl && <img src={`${CAT_PREFIX_IMAGE_URL}${imageUrl}`} alt={[`Image extracted using the first three words from ${fact}`]}/>}
     </main>
