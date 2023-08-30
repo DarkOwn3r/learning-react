@@ -5,16 +5,20 @@ import { useCatImage } from './hooks/useCatImage'
 
 const CAT_PREFIX_IMAGE_URL = 'https://cataas.com'
 
-export function App() {
+const useCatFact = () => {
   const [fact, setFact] = useState()
+  const refreshFact = () => {
+    getRandomFact().then(newFact => setFact(newFact))}
+    useEffect(refreshFact, [])
+  return { fact, refreshFact }
+}
+
+export function App() {
+  const { fact, refreshFact } = useCatFact()
   const { imageUrl } = useCatImage({ fact })
-  useEffect(() => {
-    getRandomFact().then(setFact)}
-    , [])
 
   const handleClick = async() => {
-    const newFact = await getRandomFact()
-    setFact(newFact)
+    refreshFact()
   }
 
   return (
