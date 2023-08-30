@@ -1,28 +1,9 @@
 import { useEffect, useState } from 'react'
 import './App.css'
 import { getRandomFact } from './services/facts'
+import { useCatImage } from './hooks/useCatImage'
 
 const CAT_PREFIX_IMAGE_URL = 'https://cataas.com'
-
-function useCatImage ({ fact }) {
-  const [imageUrl, setImageUrl] = useState()
-
-  // get the image from the fact
-  useEffect(() => {
-    if(!fact) return
-
-    const threeFirstWords = fact.split(' ', 3).join(' ')
-    fetch(`https://cataas.com/cat/says/${threeFirstWords}?size=50&color=red&json=true`)
-    .then(res => res.json())
-   .then(response => {
-      const { url } = response
-      setImageUrl(url)
-    })
-
-  }, [fact])
-  
-  return { imageUrl }
-} // CustomHook returns imageUrl
 
 export function App() {
   const [fact, setFact] = useState()
