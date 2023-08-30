@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react'
 import './App.css'
 import { getRandomFact } from './services/facts'
 
-// const CAT_ENDPOINT_IMAGE_URL = `https://cataas.com/cat/says/${threeFirstWords}?size=50&color=red&json=true`
 const CAT_PREFIX_IMAGE_URL = 'https://cataas.com'
 
 function useCatImage ({ fact }) {
