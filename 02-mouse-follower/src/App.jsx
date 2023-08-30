@@ -5,13 +5,8 @@ import { getRandomFact } from './services/facts'
 // const CAT_ENDPOINT_IMAGE_URL = `https://cataas.com/cat/says/${threeFirstWords}?size=50&color=red&json=true`
 const CAT_PREFIX_IMAGE_URL = 'https://cataas.com'
 
-export function App() {
-  const [fact, setFact] = useState()
+function useCatImage ({ fact }) {
   const [imageUrl, setImageUrl] = useState()
-
-  useEffect(() => {
-    getRandomFact().then(setFact)}
-    , [])
 
   // get the image from the fact
   useEffect(() => {
@@ -20,12 +15,22 @@ export function App() {
     const threeFirstWords = fact.split(' ', 3).join(' ')
     fetch(`https://cataas.com/cat/says/${threeFirstWords}?size=50&color=red&json=true`)
     .then(res => res.json())
-    .then(response => {
+   .then(response => {
       const { url } = response
       setImageUrl(url)
     })
 
   }, [fact])
+  
+  return { imageUrl }
+} // CustomHook returns imageUrl
+
+export function App() {
+  const [fact, setFact] = useState()
+  const { imageUrl } = useCatImage({ fact })
+  useEffect(() => {
+    getRandomFact().then(setFact)}
+    , [])
 
   const handleClick = async() => {
     const newFact = await getRandomFact()
